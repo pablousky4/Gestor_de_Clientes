@@ -56,3 +56,5 @@ Gestor_de_Clientes es una aplicación diseñada para facilitar la gestión de cl
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+
+![Image](https://github.com/user-attachments/assets/4779d765-77e7-4c75-b844-4f7f6a64183f)
