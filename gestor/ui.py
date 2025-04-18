@@ -195,10 +195,22 @@ class EditClientWindow(Toplevel, CenterWidgetMixin):
         self.actualizar.config(state=NORMAL if self.validaciones == [1, 1] else DISABLED)
 
     def update_client(self):
-        cliente = self.master.treeview.focus()
-        self.master.treeview.item(cliente, values=(self.dni.get(), self.nombre.get(), self.apellido.get()))
-        db.Clientes.modificar(self.dni.get(), self.nombre.get(), self.apellido.get())
+        cliente_iid = self.master.treeview.focus()
+
+        if not cliente_iid:
+            return
+
+        nuevo_nombre = self.nombre.get()
+        nuevo_apellido = self.apellido.get()
+
+        # 🧠 usamos el iid como dni real, nunca tomamos el Entry (por si se rompe)
+        self.master.treeview.item(cliente_iid, values=(cliente_iid, nuevo_nombre, nuevo_apellido))
+
+        # 🔁 sincroniza con la base de datos
+        db.Clientes.modificar(cliente_iid, nuevo_nombre, nuevo_apellido)
+
         self.close()
+
 
     def close(self):
         self.destroy()
