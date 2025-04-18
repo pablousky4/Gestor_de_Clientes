@@ -1,5 +1,5 @@
 import csv
-import config
+from . import config
 
 class Cliente:
     def __init__(self, dni, nombre, apellido):

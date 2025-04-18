@@ -1,5 +1,5 @@
-import database as db
-import helpers
+from . import database as db
+from . import helpers
 
 def iniciar():
     while True:

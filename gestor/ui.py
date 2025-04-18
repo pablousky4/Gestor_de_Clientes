@@ -1,8 +1,9 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter.messagebox import askokcancel, WARNING
-import database as db
-import helpers
+from . import database as db
+from . import helpers
+
 
 
 class CenterWidgetMixin:
