@@ -227,10 +227,8 @@ class EditClientWindow(Toplevel, CenterWidgetMixin):
         nuevo_nombre = self.nombre.get()
         nuevo_apellido = self.apellido.get()
 
-        # 🧠 usamos el iid como dni real, nunca tomamos el Entry (por si se rompe)
         self.master.treeview.item(cliente_iid, values=(cliente_iid, nuevo_nombre, nuevo_apellido))
 
-        # 🔁 sincroniza con la base de datos
         db.Clientes.modificar(cliente_iid, nuevo_nombre, nuevo_apellido)
 
         self.close()
