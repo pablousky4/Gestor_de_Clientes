@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from tkinter.messagebox import askokcancel, WARNING
+from tkinter.messagebox import askokcancel, WARNING, showinfo
 from . import database as db
 from . import helpers
 
@@ -19,6 +19,19 @@ class CenterWidgetMixin:
 
 
 class MainWindow(Tk, CenterWidgetMixin):
+    from tkinter.messagebox import showinfo
+
+    def buscar_cliente(self):
+        dni = self.buscar_entry.get().strip().upper()
+
+        if dni in self.treeview.get_children():
+            self.treeview.selection_set(dni)
+            self.treeview.focus(dni)
+            self.treeview.see(dni)
+            showinfo("Cliente encontrado", f"Cliente con DNI {dni} seleccionado.")
+        else:
+            showinfo("No encontrado", f"No se encontró ningún cliente con DNI {dni}.")
+
     def __init__(self):
         super().__init__()
         self.title('Gestor de clientes')
@@ -27,6 +40,17 @@ class MainWindow(Tk, CenterWidgetMixin):
 
     def build(self):
         # Frame superior
+        # Frame superior (buscador + tabla)
+        top_frame = Frame(self)
+        top_frame.pack(pady=10)
+
+        # Entry de búsqueda
+        self.buscar_entry = Entry(top_frame)
+        self.buscar_entry.grid(row=0, column=0, padx=5)
+
+        # Botón buscar
+        Button(top_frame, text="Buscar", command=self.buscar_cliente).grid(row=0, column=1)
+
         frame = Frame(self)
         frame.pack()
 
