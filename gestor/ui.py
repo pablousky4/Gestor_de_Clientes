@@ -4,8 +4,6 @@ from tkinter.messagebox import askokcancel, WARNING, showinfo
 from . import database as db
 from . import helpers
 
-
-
 class CenterWidgetMixin:
     def center(self):
         self.update()
@@ -39,7 +37,6 @@ class MainWindow(Tk, CenterWidgetMixin):
         self.center()
 
     def build(self):
-        # Frame superior
         # Frame superior (buscador + tabla)
         top_frame = Frame(self)
         top_frame.pack(pady=10)
